@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #e4e9ee;
+  --ink: #14171d;
+  --mute: #5d6673;
+  --field: #f7f8fa;
+  --line: #c5ccd6;
+  --signal: #ff3618;
+  --signal-ink: #fffaf8;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-ink: var(--ink);
+  --color-mute: var(--mute);
+  --color-field: var(--field);
+  --color-line: var(--line);
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-sora);
+  --font-mono: var(--font-geist-mono);
+}
+
+.you-i-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.prompt-shell:focus-within {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+@keyframes youi-press {
+  0%,
+  8% {
+    opacity: 0;
+    transform: translateY(0.28em);
+  }
+  18%,
+  68% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  82%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes youi-rise {
+  0%,
+  6% {
+    transform: translateY(110%);
+  }
+  20%,
+  68% {
+    transform: translateY(0);
+  }
+  86%,
+  100% {
+    transform: translateY(-110%);
+  }
+}
+
+@keyframes youi-rule {
+  0%,
+  10% {
+    transform: scaleX(0);
+  }
+  26%,
+  70% {
+    transform: scaleX(1);
+  }
+  88%,
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+.youi-press {
+  animation: youi-press 4.8s ease-out infinite;
+}
+
+.youi-rise {
+  animation: youi-rise 4.8s ease-in-out infinite;
+}
+
+.youi-rule {
+  animation: youi-rule 4.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .youi-press,
+  .youi-rise,
+  .youi-rule {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

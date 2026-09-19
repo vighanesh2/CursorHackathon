@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "you-i": {
+      "command": "node",
+      "args": ["${workspaceFolder}/mcp/you-i.mjs"]
+    }
+  }
+}

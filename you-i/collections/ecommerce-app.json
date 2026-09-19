@@ -1,0 +1,57 @@
+{
+  "slug": "ecommerce-app",
+  "name": "ecommerce-app",
+  "prompt": "i want to build ai chatbot for my ecommerce business to answer all the customer questions",
+  "moodboardTitle": "Sea Breeze",
+  "dna": {
+    "palette": {
+      "canvas": "#E0F7FA",
+      "ink": "#006064",
+      "accent": "#FFAB00",
+      "mute": "#B0BEC5",
+      "field": "#F1F8E9"
+    },
+    "type": {
+      "display": "Red Hat Display",
+      "body": "Red Hat Display",
+      "utility": "Red Hat Display"
+    },
+    "layout": "Open floor with driftwood racks on one side, a sand‑colored counter opposite, large windows framing the ocean view.",
+    "signature": "hand‑carved seashell motifs etched into wooden display panels",
+    "materials": "weathered pine, natural linen, sea‑glass, soft ambient daylight",
+    "motion": "The words sit still. A line writes itself underneath.",
+    "photos": [
+      "https://api.openverse.org/v1/images/9bc0943a-58eb-47eb-804d-72c4341fe15a/thumb/",
+      "https://api.openverse.org/v1/images/4b991267-7f50-459f-8215-4fecea89cf5d/thumb/",
+      "https://api.openverse.org/v1/images/f08ae53e-417b-42e3-9cef-bba2432749ef/thumb/",
+      "https://api.openverse.org/v1/images/85bcd5f8-2d72-4194-957c-791068537a21/thumb/",
+      "https://api.openverse.org/v1/images/2faf2d0d-43fe-49d7-b710-6124c4f223cf/thumb/",
+      "https://api.openverse.org/v1/images/90a0e67a-d62f-471c-abd4-84aa456359d4/thumb/",
+      "https://api.openverse.org/v1/images/83039139-c54a-4746-a735-f5c14fdaa274/thumb/"
+    ],
+    "font": {
+      "family": "Red Hat Display",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap",
+      "weights": [
+        300,
+        400,
+        500,
+        600,
+        700
+      ],
+      "italic": true
+    },
+    "buttons": {
+      "id": "square",
+      "title": "Square cut",
+      "thesis": "Hard corners and a drawn border, like a stamp on paper.",
+      "radius": 0,
+      "borderWidth": 2
+    },
+    "textMotion": {
+      "id": "rule",
+      "title": "Drawn rule",
+      "thesis": "The words sit still. A line writes itself underneath."
+    }
+  }
+}
