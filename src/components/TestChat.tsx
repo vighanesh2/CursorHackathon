@@ -8,23 +8,10 @@ type Turn = {
 };
 
 const SUGGESTIONS = [
-  { label: "Where is my order?", prompt: "Where is my order? I placed it last week." },
-  { label: "Returns & exchanges", prompt: "What is your returns and exchanges policy?" },
-  { label: "Fabric care", prompt: "How should I wash the linen shirts?" },
-  { label: "Sizing", prompt: "I'm between sizes. How does your sizing run?" },
+  { label: "Today’s loaves", prompt: "What breads came out of the oven today?" },
+  { label: "Order a cake", prompt: "I need to order a birthday cake for Saturday." },
+  { label: "Hours & pickup", prompt: "What are your hours and how does pickup work?" },
 ];
-
-const WINDOW_PHOTO =
-  "https://api.openverse.org/v1/images/9bc0943a-58eb-47eb-804d-72c4341fe15a/thumb/";
-
-function ShellMark() {
-  return (
-    <svg className="tide-shell-mark" viewBox="0 0 64 48" aria-hidden="true">
-      <path d="M32 6c-7 8-18 14-24 28 8 6 16 8 24 8s16-2 24-8C50 20 39 14 32 6z" />
-      <path d="M32 10v32M20 18c4 8 8 14 12 24M44 18c-4 8-8 14-12 24M14 30h36" />
-    </svg>
-  );
-}
 
 export function TestChat() {
   const [draft, setDraft] = useState("");
@@ -70,87 +57,67 @@ export function TestChat() {
   }
 
   return (
-    <section className="tide-floor">
-      <aside className="tide-rack">
-        <div className="tide-panel">
-          <ShellMark />
-          <p className="tide-kicker">Sea Breeze shop</p>
-          <h2>Ask the floor</h2>
-          <p className="tide-lede">
-            Linen, pine, and the tide outside. Questions about orders, fit, and care land here.
-          </p>
+    <section className="hearth-room">
+      <header className="hearth-header">
+        <p className="hearth-kicker">Rustic Hearth bakery</p>
+        <div className="hearth-rise-mask">
+          <h1 className="hearth-rise">The oven is open</h1>
         </div>
-        <nav className="tide-rack-list" aria-label="Common questions">
-          {SUGGESTIONS.map((item) => (
-            <button
-              key={item.label}
-              type="button"
-              className="tide-btn-secondary"
-              onClick={() => void sendMessage(item.prompt)}
-            >
-              {item.label}
-            </button>
-          ))}
-        </nav>
-      </aside>
+      </header>
 
-      <div className="tide-room">
-        <header className="tide-header">
-          <img className="tide-window" src={WINDOW_PHOTO} alt="" />
-          <div className="tide-header-copy">
-            <p className="tide-kicker">Open today · daylight hours</p>
-            <h1>
-              Shore clerk
-              <span className="tide-rule" aria-hidden="true" />
-            </h1>
+      <div className="hearth-log">
+        {turns.length === 0 && !loading ? (
+          <div className="hearth-empty">
+            <p>Ask the counter about bread, cakes, or when to pick up.</p>
+            <div className="hearth-chips">
+              {SUGGESTIONS.map((item) => (
+                <button
+                  key={item.label}
+                  type="button"
+                  className="hearth-btn-secondary"
+                  onClick={() => void sendMessage(item.prompt)}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
-        </header>
+        ) : null}
 
-        <div className="tide-log">
-          {turns.length === 0 && !loading ? (
-            <div className="tide-empty">
-              <p>The counter is clear. Ask about an order, a size, or how to wash a piece.</p>
-            </div>
-          ) : null}
-
-          {turns.map((turn, index) => (
-            <div key={`${turn.role}-${index}`} className={`tide-row ${turn.role}`}>
-              <div className="tide-bubble">{turn.content}</div>
-            </div>
-          ))}
-
-          {loading ? (
-            <div className="tide-row assistant">
-              <div className="tide-writing" aria-label="Shore clerk is writing">
-                <span>Writing</span>
-                <i />
-              </div>
-            </div>
-          ) : null}
-          <div ref={endRef} />
-        </div>
-
-        {error ? <p className="tide-error">{error}</p> : null}
-
-        <form className="tide-counter" onSubmit={send}>
-          <label className="tide-counter-label" htmlFor="tide-draft">
-            Sand counter
-          </label>
-          <div className="tide-counter-row">
-            <input
-              id="tide-draft"
-              type="text"
-              value={draft}
-              onChange={(event) => setDraft(event.target.value)}
-              disabled={loading}
-              placeholder="Ask about shipping, fit, or fabric…"
-            />
-            <button className="tide-btn-primary" type="submit" disabled={!draft.trim() || loading}>
-              Send
-            </button>
+        {turns.map((turn, index) => (
+          <div key={`${turn.role}-${index}`} className={`hearth-row ${turn.role}`}>
+            <div className="hearth-bubble">{turn.content}</div>
           </div>
-        </form>
+        ))}
+
+        {loading ? (
+          <div className="hearth-row assistant">
+            <div className="hearth-writing" aria-label="Writing">
+              Writing
+            </div>
+          </div>
+        ) : null}
+        <div ref={endRef} />
       </div>
+
+      {error ? <p className="hearth-error">{error}</p> : null}
+
+      <form className="hearth-counter" onSubmit={send}>
+        <label htmlFor="hearth-draft">Flour counter</label>
+        <div className="hearth-counter-row">
+          <input
+            id="hearth-draft"
+            type="text"
+            value={draft}
+            onChange={(event) => setDraft(event.target.value)}
+            disabled={loading}
+            placeholder="Ask about an order or a loaf…"
+          />
+          <button className="hearth-btn-primary" type="submit" disabled={!draft.trim() || loading}>
+            Send
+          </button>
+        </div>
+      </form>
     </section>
   );
 }
