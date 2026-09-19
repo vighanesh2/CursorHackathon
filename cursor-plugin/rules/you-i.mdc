@@ -1,0 +1,15 @@
+---
+description: Apply a saved You-i Design DNA collection when the user mentions @you-i, a collection name, or asks to design UI from You-i inspiration.
+alwaysApply: false
+---
+
+# You-i Design DNA
+
+When the user mentions `@you-i`, a collection slug, or "use this design inspiration":
+
+1. Load that collection with the You-i MCP `get_collection` tool.
+2. Treat the guide as the source of truth for color, type, buttons, and motion.
+3. Moodboard photos are look-don't-copy. Never include collection image URLs in the generated UI (no img tags, background images, or collages of those photos). Use them only to infer mood, materials, and palette.
+4. Do not substitute generic AI UI: no decorative gradients, glow, glassmorphism, icon grids, or Inter/Poppins/Geist defaults.
+5. Load the named Google Font. Use the palette hexes as flat colors. Build primary/secondary/tertiary buttons from the stored radius and border.
+6. If no collection name is given, call `list_collections` and pick the one they named in the prompt.

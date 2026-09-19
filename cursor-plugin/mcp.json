@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "you-i": {
+      "url": "https://cursorhackathon-sandy.vercel.app/mcp",
+      "headers": {
+        "Authorization": "Bearer ${YOU_I_TOKEN}"
+      }
+    }
+  }
+}

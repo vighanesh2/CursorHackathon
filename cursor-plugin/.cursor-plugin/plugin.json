@@ -1,0 +1,22 @@
+{
+  "name": "you-i",
+  "version": "0.1.0",
+  "description": "Load You-i Design DNA collections and apply them when building UI. Moodboard photos are inspiration only.",
+  "author": {
+    "name": "You-i"
+  },
+  "homepage": "https://cursorhackathon-sandy.vercel.app",
+  "keywords": ["design", "ui", "mcp", "frontend", "design-dna"],
+  "logo": "assets/logo.svg",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "YOU_I_TOKEN": {
+        "type": "string",
+        "title": "You-i Cursor token",
+        "description": "Token from You-i Collection → Connect Cursor. Treat it like a password."
+      }
+    },
+    "required": ["YOU_I_TOKEN"]
+  }
+}
