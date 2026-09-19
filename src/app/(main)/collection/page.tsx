@@ -1,4 +1,5 @@
 import { CollectionList } from "@/components/CollectionList";
+import { CursorMcpSetup } from "@/components/CursorMcpSetup";
 
 export default function CollectionPage() {
   return (
@@ -13,6 +14,7 @@ export default function CollectionPage() {
           </p>
         </div>
         <CollectionList />
+        <CursorMcpSetup />
       </main>
     </div>
   );

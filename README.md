@@ -24,6 +24,25 @@ Copy `.env.example` to `.env.local` and fill in:
 
 Then run `supabase/schema.sql` in the Supabase SQL editor.
 
+## Hosted MCP
+
+The deployed app exposes Streamable HTTP MCP at `/mcp`. It reads collections from Supabase for the user id in header `x-you-i-user-id` (the same session id as the Collection page).
+
+```json
+{
+  "mcpServers": {
+    "you-i": {
+      "url": "https://YOUR-VERCEL-URL/mcp",
+      "headers": {
+        "x-you-i-user-id": "YOUR-SESSION-ID"
+      }
+    }
+  }
+}
+```
+
+Open Collection on the live site to copy that block. Then enable the `you-i` server in Cursor Settings → MCP. Local `mcp/you-i.mjs` still reads markdown files in this repo for development.
+
 ## Use a collection in Cursor
 
 Saving a design writes a style guide to `you-i/collections/{slug}.md`. Cursor can load that DNA through the **you-i** MCP server.
