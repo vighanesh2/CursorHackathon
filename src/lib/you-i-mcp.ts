@@ -29,7 +29,7 @@ export function createYouIMcpServer(userId: string | null) {
     async () => {
       if (!userId) {
         return textResult(
-          "No You-i user id. In Cursor MCP config, set header x-you-i-user-id to the session id shown on the You-i Collection page.",
+          "No You-i Cursor token. On the Collection page, copy the mcp.json block (Authorization: Bearer) and enable you-i in Settings → MCP.",
         );
       }
       try {
@@ -62,7 +62,7 @@ export function createYouIMcpServer(userId: string | null) {
     async ({ name }) => {
       if (!userId) {
         return textResult(
-          "No You-i user id. In Cursor MCP config, set header x-you-i-user-id to the session id shown on the You-i Collection page.",
+          "No You-i Cursor token. On the Collection page, copy the mcp.json block (Authorization: Bearer) and enable you-i in Settings → MCP.",
         );
       }
       try {
@@ -89,14 +89,11 @@ export function createYouIMcpServer(userId: string | null) {
   return server;
 }
 
-export function readYouIUserId(request: Request) {
-  const headerId = request.headers.get("x-you-i-user-id")?.trim();
-  if (headerId) return headerId;
-
+export function readYouICredential(request: Request) {
   const auth = request.headers.get("authorization")?.trim();
   if (auth?.toLowerCase().startsWith("bearer ")) {
     return auth.slice(7).trim();
   }
 
-  return null;
+  return request.headers.get("x-you-i-user-id")?.trim() ?? null;
 }

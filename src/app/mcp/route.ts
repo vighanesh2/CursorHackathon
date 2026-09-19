@@ -1,6 +1,6 @@
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
-import { UUID_RE } from "@/lib/ids";
-import { createYouIMcpServer, readYouIUserId } from "@/lib/you-i-mcp";
+import { userIdFromCredential } from "@/lib/mcp-token";
+import { createYouIMcpServer, readYouICredential } from "@/lib/you-i-mcp";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -26,8 +26,7 @@ function withCors(response: Response) {
 }
 
 async function handleMcp(request: Request) {
-  const rawUserId = readYouIUserId(request);
-  const userId = rawUserId && UUID_RE.test(rawUserId) ? rawUserId : null;
+  const userId = userIdFromCredential(readYouICredential(request));
   const transport = new WebStandardStreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
     enableJsonResponse: true,

@@ -21,12 +21,13 @@ Copy `.env.example` to `.env.local` and fill in:
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY` — server-only, used to save without login
+- `MCP_TOKEN_SECRET` — optional; used to sign Cursor MCP tokens (falls back to the service role key)
 
 Then run `supabase/schema.sql` in the Supabase SQL editor.
 
 ## Hosted MCP
 
-The deployed app exposes Streamable HTTP MCP at `/mcp`. It reads collections from Supabase for the user id in header `x-you-i-user-id` (the same session id as the Collection page).
+The deployed app exposes Streamable HTTP MCP at `/mcp`. Collections are scoped to a signed Cursor token from the Collection page (`Authorization: Bearer …`). A raw session UUID still works for older configs.
 
 ```json
 {
@@ -34,7 +35,7 @@ The deployed app exposes Streamable HTTP MCP at `/mcp`. It reads collections fro
     "you-i": {
       "url": "https://YOUR-VERCEL-URL/mcp",
       "headers": {
-        "x-you-i-user-id": "YOUR-SESSION-ID"
+        "Authorization": "Bearer YOUR-CURSOR-TOKEN"
       }
     }
   }
@@ -42,6 +43,21 @@ The deployed app exposes Streamable HTTP MCP at `/mcp`. It reads collections fro
 ```
 
 Open Collection on the live site to copy that block. Then enable the `you-i` server in Cursor Settings → MCP. Local `mcp/you-i.mjs` still reads markdown files in this repo for development.
+
+## Cursor plugin (any project)
+
+The installable plugin lives in `cursor-plugin/`. It bundles the hosted MCP, the You-i skill, and the anti-slop rule.
+
+To try it on this machine:
+
+```bash
+mkdir -p ~/.cursor/plugins/local
+cp -R cursor-plugin ~/.cursor/plugins/local/you-i
+```
+
+Reload Cursor, open Customize → Plugins, paste your **Connect Cursor** token into `YOU_I_TOKEN`, and enable the server.
+
+Marketplace submit is the next step: public Git repo + [cursor.com/marketplace/publish](https://cursor.com/marketplace/publish).
 
 ## Use a collection in Cursor
 
